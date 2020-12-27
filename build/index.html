@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../home.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <title>Relaxing Sounds App</title>
+  </head>
+  <body>
+    <main>
+      <section class="input-section">
+        <input type="text" class="search-input" placeholder="Buscar..." />
+      </section>
+    </main>
+    <main class="home-wrapper container">
+      <h1 class="home-h1">¿Qué sonidos te apetece escuchar?</h1>
+      <section class="section-videos row">
+        <div class="col">
+          <h5 class="title-video">Fuego</h5>
+          <video
+            id="fuego"
+            loop
+            class="video"
+            controls
+            title="crepitar-fuego"
+            src="../public/Virtual Bonfire with Crackling Fire Sounds (Full HD).mp4"
+            type="video/mp4"
+          ></video>
+        </div>
+        <div class="col">
+          <h5 class="title-video">Lluvia</h5>
+          <video
+            id="lluvia"
+            loop
+            controls
+            title="lluvia"
+            class="video"
+            src="../public/Rain - 78.mp4"
+            type="video/mp4"
+          ></video>
+        </div>
+        <div class="col">
+          <h5 class="title-video">Aves</h5>
+          <video
+            id="Aves"
+            loop
+            controls
+            title="Aves"
+            class="video"
+            src="../public/Bullfinch - 2797.mp4"
+            type="video/mp4"
+          ></video>
+        </div>
+        <div class="col mb-3">
+          <h5 class="title-video">Viento</h5>
+          <video
+            id="viento"
+            loop
+            controls
+            title="viento"
+            class="video"
+            src="../public/Grass - 8876.mp4"
+            type="video/mp4"
+          ></video>
+        </div>
+      </section>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../index.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/8.2.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+  </body>
+</html>
