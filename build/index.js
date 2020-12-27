@@ -34,7 +34,7 @@ function searchQuery(query, collection) {
 
     for (let i = 0; i < collection.length; i++) {
         newArr.push(collection[i].textContent)
-    }
+    };
     query.addEventListener("input", (e) => {
         searchInput = e.target.value;
         filtered = newArr.filter((item) => item.toLowerCase().includes(searchInput) || item.includes(searchInput));
