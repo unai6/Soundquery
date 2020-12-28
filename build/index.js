@@ -5,10 +5,6 @@ let search = document.querySelector(".search-input");
 let videoBlock = document.querySelectorAll(".col");
 let searchInput = '';
 
-
-$("#container").removeAttr("unselectable");
-
-console.log(document.querySelector(".bottomBar"))
 class Video {
 
     setFullScreenOnClick() {
