@@ -5,6 +5,10 @@ let search = document.querySelector(".search-input");
 let videoBlock = document.querySelectorAll(".col");
 let searchInput = '';
 
+
+$("#container").removeAttr("unselectable");
+
+console.log(document.querySelector(".bottomBar"))
 class Video {
 
     setFullScreenOnClick() {
@@ -31,18 +35,19 @@ videoClass.setFullScreenOnClick();
 
 
 function showVideos(videos, filteredVideos) {
-
+    let section = document.querySelector(".section-videos");
+    let noQuery = document.createElement("h1");
+    noQuery.innerHTML = " No hay videos que coincidan con esa descripción"
+    
     videos.forEach((video) => {
         video.style.display = "block"
-        if (filteredVideos) {
-            filteredVideos.forEach((item) => item.style.display ='block')
-            video.style.display = 'none'
+        if (filteredVideos.length > 0) {
+            filteredVideos.forEach((item) => item.style.display = 'block');
+            video.style.display = 'none';
+       
         } else {
-           let h1 =  document.createElement("h1");
-           console.log("nothing here")
-           h1.innerHTML =" No hay videos que coincidan con esa descripción"
-           let section = document.querySelector(".section-videos");
-           section.appendChild(h1)
+        
+            video.style.display = 'none';
         }
     })
 }
@@ -58,10 +63,13 @@ function searchQuery(query, itemsToDisplay) {
     query.addEventListener("input", (e) => {
         searchInput = e.target.value;
         filtered = newArr.filter((item) => item.textContent.toLowerCase().includes(searchInput) || item.textContent.includes(searchInput));
-        showVideos(itemsToDisplay, filtered)
+
         if (!searchInput) {
             itemsToDisplay.forEach((item) => item.style.display = "block");
-        }
+        };
+
+        showVideos(itemsToDisplay, filtered);
+
     });
 }
 
