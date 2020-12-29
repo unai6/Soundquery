@@ -82,7 +82,13 @@ and (orientation:landscape) {
     .home-h1 {
         text-align: center;
     }
-
+    .unai-logo{
+        display: inline;
+        height: 100%;
+        height: 90px;
+        position: relative;
+        margin-bottom: -2em;
+    }
     .video {
         border: none;
         object-fit: cover;
