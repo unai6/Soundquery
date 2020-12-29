@@ -1,48 +1,95 @@
+
+
 let video = document.querySelectorAll(".video");
 let titleVideo = document.querySelectorAll(".title-video");
 let videoWrapper = document.querySelector(".section-videos");
 let search = document.querySelector(".search-input");
 let videoBlock = document.querySelectorAll(".col");
 let searchInput = '';
+let timeInput = document.getElementById("timeinput");
+let timebutton = document.getElementById("timebutton");
 
 class Video {
 
-    setFullScreenOnClick() {
-        for (let i = 0; i < video.length; i++) {
-            video[i].addEventListener("click", () => {
-                if (video[i].requestFullscreen) {
-                    video[i].requestFullscreen();
-                } else if (video[i].mozRequestFullScreen) { /* Firefox */
-                    video[i].mozRequestFullScreen();
-                } else if (video[i].webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-                    video[i].webkitRequestFullscreen();
-                } else if (video[i].msRequestFullscreen) { /* IE/Edge */
-                    video[i].msRequestFullscreen();
-                }
+    setFullScreenOnClick(videoToSet) {
+        for (let i = 0; i < videoToSet.length; i++) {
+            videoToSet[i].addEventListener("click", () => {
+                if (videoToSet[i].requestFullscreen) {
+                    videoToSet[i].requestFullscreen();
+                } else if (videoToSet[i].mozRequestFullScreen) { /* Firefox */
+                    videoToSet[i].mozRequestFullScreen();
+                } else if (videoToSet[i].webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                    videoToSet[i].webkitRequestFullscreen();
+                } else if (videoToSet[i].msRequestFullscreen) { /* IE/Edge */
+                    videoToSet[i].msRequestFullscreen();
+                };
             });
         };
+    }
+
+    play(videoToSet) {
+        let playing = false;
+        for (let i = 0; i < videoToSet.length; i++) {
+            videoToSet[i].addEventListener("click", () => {
+                playing = !playing;
+                if (playing) {
+                    videoToSet[i].play();
+                } else videoToSet[i].pause();
+            })
+        }
+    }
+
+    setPlayingTime(videoToSet) {
+        let timeValue;
+        timeInput.addEventListener("input", (e) => {
+            timeValue = e.target.value;
+        })
+        for (let i = 0; i < videoToSet.length; i++) {
+            videoToSet[i].addEventListener("timeupdate", function () {
+                this.currentTime > (timeValue * 60) &&
+                    videoToSet[i].pause();
+            });
+        };
+    }
+
+    hidePlayingTimeHandler(input, button) {
+        let showInput = true
+        button.addEventListener("click", () => {
+            showInput = !showInput;
+            if (showInput) {
+                button.textContent = 'OK'
+                input.style.display = "inline";
+            } else {
+                button.textContent = 'Editar'
+                input.style.display = "none";
+            };
+        });
     }
 
 }
 
 let videoClass = new Video;
 
-videoClass.setFullScreenOnClick();
+videoClass.setFullScreenOnClick(video);
+videoClass.play(video);
+videoClass.setPlayingTime(video);
+videoClass.hidePlayingTimeHandler(timeInput, timebutton)
 
 
 function showVideos(videos, filteredVideos) {
     let section = document.querySelector(".section-videos");
-    let noQuery = document.createElement("h1");
-    noQuery.innerHTML = " No hay videos que coincidan con esa descripción"
-    
+
+    let noMatch = document.createElement("h1");
+    noMatch.innerHTML = " No hay videos que coincidan con esa descripción"
+
     videos.forEach((video) => {
         video.style.display = "block"
         if (filteredVideos.length > 0) {
             filteredVideos.forEach((item) => item.style.display = 'block');
             video.style.display = 'none';
-       
+
         } else {
-        
+
             video.style.display = 'none';
         }
     })

@@ -14,10 +14,13 @@
   </head>
   <body>
     <section class="input-section">
-      <input type="text" class="search-input" placeholder="Buscar..." />
+      <input type="number" class="search-input" placeholder="Buscar..." />
     </section>
     <main class="home-wrapper container">
       <h1 class="home-h1">¿Qué sonidos te apetece escuchar?</h1>
+      <h6>¿Cuántos minutos quieres escucharlo?</h6>
+      <button class='btn btn-dark' id="timebutton">OK</button>
+      <input class=' input-control' id="timeinput" type="text" placeholder="Tiempo" />
       <section class="section-videos row">
         <div class="col">
           <h5 class="title-video">Fuego</h5>
@@ -25,7 +28,6 @@
             id="fuego"
             loop
             class="video"
-            controls
             title="crepitar-fuego"
             src="./public/0_0s_to_9000_0s_Virtual_Bonfire_with_Crackling_Fir.mp4"
             type="video/mp4"
@@ -36,7 +38,6 @@
           <video
             id="lluvia"
             loop
-            controls
             title="lluvia"
             class="video"
             src="./public/Rain - 78.mp4"
@@ -48,7 +49,6 @@
           <video
             id="Aves"
             loop
-            controls
             title="Aves"
             class="video"
             src="./public/Bullfinch - 2797.mp4"
@@ -60,7 +60,6 @@
           <video
             id="viento"
             loop
-            controls
             title="viento"
             class="video"
             src="./public/Grass - 8876.mp4"
@@ -75,24 +74,24 @@
       crossorigin="anonymous"
     ></script>
     <script src="./index.js"></script>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: "relaxnes.firebaseapp.com",
-    projectId: "relaxnes",
-    storageBucket: "relaxnes.appspot.com",
-    messagingSenderId: "369224125073",
-    appId: "1:369224125073:web:c8b771f1c860c815680d30"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyA5EsdkAHvAKe_jD13KFhwuRD3Zxl9WIqw",
+        authDomain: "relaxnes.firebaseapp.com",
+        projectId: "relaxnes",
+        storageBucket: "relaxnes.appspot.com",
+        messagingSenderId: "369224125073",
+        appId: "1:369224125073:web:c8b771f1c860c815680d30",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </body>
 </html>
