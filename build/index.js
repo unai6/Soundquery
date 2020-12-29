@@ -1,13 +1,15 @@
 
 
 let video = document.querySelectorAll(".video");
-let titleVideo = document.querySelectorAll(".title-video");
-let videoWrapper = document.querySelector(".section-videos");
 let search = document.querySelector(".search-input");
 let videoBlock = document.querySelectorAll(".col");
 let searchInput = '';
 let timeInput = document.getElementById("timeinput");
 let timebutton = document.getElementById("timebutton");
+let noMatch = document.querySelector(".nomatch");
+let errorPic = document.querySelector(".error-pic");
+noMatch.style.display = 'none'
+errorPic.style.display = 'none'
 
 class Video {
 
@@ -49,7 +51,7 @@ class Video {
                 this.currentTime > (timeValue * 60) &&
                     videoToSet[i].pause();
             });
-       
+
         };
     }
 
@@ -67,6 +69,16 @@ class Video {
         });
     }
 
+    showControlsOnHOver() {
+        $('.video').hover(function toggleControls() {
+            if (this.hasAttribute("controls")) {
+                this.removeAttribute("controls")
+            } else {
+                this.setAttribute("controls", "controls")
+            }
+        })
+    }
+
 }
 
 let videoClass = new Video;
@@ -74,23 +86,25 @@ let videoClass = new Video;
 videoClass.setFullScreenOnClick(video);
 videoClass.play(video);
 videoClass.setPlayingTime(video);
-videoClass.hidePlayingTimeHandler(timeInput, timebutton)
+videoClass.hidePlayingTimeHandler(timeInput, timebutton);
+videoClass.showControlsOnHOver();
 
 
 function showVideos(videos, filteredVideos) {
-    let section = document.querySelector(".section-videos");
-
-    let noMatch = document.createElement("h1");
-    noMatch.innerHTML = " No hay videos que coincidan con esa descripción"
 
     videos.forEach((video) => {
         video.style.display = "block"
         if (filteredVideos.length > 0) {
-            filteredVideos.forEach((item) => item.style.display = 'block');
+            filteredVideos.forEach((item) => {
+                item.style.display = 'block';
+                noMatch.style.display = 'none';
+                errorPic.style.display = "none"
+            });
             video.style.display = 'none';
 
         } else {
-
+            noMatch.style.display='block'
+            errorPic.style.display = "block"
             video.style.display = 'none';
         }
     })

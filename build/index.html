@@ -13,18 +13,35 @@
     <title>Relaxing Sounds App</title>
   </head>
   <body>
-    <section class="input-section">
-      <input type="text" class="search-input" placeholder="Buscar..." />
-    </section>
     <main class="home-wrapper container">
-      <h1 class="home-h1">¿Qué sonidos te apetece escuchar?</h1>
-      <h6 class='text-center mt-4'>¿Cuántos minutos quieres escucharlo?</h6>
-      <button class='btn btn-dark' id="timebutton">OK</button>
-      <input class=' input-control' id="timeinput" type="text" placeholder="Tiempo" />
+      <img class='unai-logo' src='./public/8554C9AE.png'/>
+      <h1 class="home-h1 mt-4">¿Qué sonidos te apetece escuchar?</h1>
+      <section class="input-section">
+        <input type="text" class="search-input" placeholder="Buscar..." />
+      </section>
+      <h6 class="text-center mt-4">¿Cuántos minutos quieres escucharlo?</h6>
+      <button class="btn btn-dark" id="timebutton">OK</button>
+      <input
+        class="input-control"
+        id="timeinput"
+        type="text"
+        placeholder="Tiempo"
+      />
+      <section>
+        <img
+          class="error-pic"
+          src="https://cdn.pixabay.com/photo/2018/01/04/15/51/404-error-3060993_960_720.png"
+        />
+        <p class="nomatch text-center mt-3">
+          No hay ningún video que coincida con esa palabra o descripción
+        </p>
+      </section>
       <section class="section-videos row">
         <div class="col">
           <h5 class="title-video">Fuego</h5>
           <video
+            poster="./public/blaze-2178749_1920.jpg"
+            preload="auto"
             id="fuego"
             loop
             class="video"
@@ -36,6 +53,7 @@
         <div class="col">
           <h5 class="title-video">Lluvia</h5>
           <video
+            poster="./public/pool-4332152_1920.jpg"
             id="lluvia"
             loop
             title="lluvia"
@@ -47,22 +65,48 @@
         <div class="col">
           <h5 class="title-video">Aves</h5>
           <video
+            poster="./public/animal-4638598_1920.jpg"
             id="Aves"
             loop
             title="Aves"
             class="video"
-            src="./public/Bullfinch - 2797.mp4"
+            src="./public/Bird Sounds Spectacular Morning Bird Song_00_00_16-00_15_39 - oDownloader.mp4"
             type="video/mp4"
           ></video>
         </div>
         <div class="col mb-3">
           <h5 class="title-video">Viento</h5>
           <video
+            poster="./public/dandelion-463928_1920.jpg"
             id="viento"
             loop
             title="viento"
             class="video"
-            src="./public/Grass - 8876.mp4"
+            src="./public/1 Hour in a Healing Aspen Forest w Nature Sounds 1080p Pure Relaxation Video_00_01_20-00_14_53 - oDownloader.mp4"
+            type="video/mp4"
+          ></video>
+        </div>
+        <div class="col mb-3">
+          <h5 class="title-video">Olas</h5>
+          <video
+            poster="https://cdn.pixabay.com/photo/2018/06/13/18/20/wave-3473335_1280.jpg"
+            id="olas"
+            loop
+            title="olas"
+            class="video"
+            src="./public/Fall Asleep with Powerful Waves at Night on Museddu Beach Ocean Sounds for Deep Sleeping_00_00_00-00_15_20 - oDownloader.mp4"
+            type="video/mp4"
+          ></video>
+        </div>
+        <div class="col mb-3">
+          <h5 class="title-video">Jungla</h5>
+          <video
+            poster="https://cdn.pixabay.com/photo/2020/02/26/18/22/jungle-4882466_1280.jpg"
+            id="jungla"
+            loop
+            title="jungla"
+            class="video"
+            src="./public/Jungle Natural Sound 11 Hours Exotic Jungle natural sound for relaxation and sleep_00_00_00-00_15_23 - oDownloader (1).mp4"
             type="video/mp4"
           ></video>
         </div>
@@ -71,6 +115,11 @@
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
       crossorigin="anonymous"
     ></script>
     <script src="./index.js"></script>
