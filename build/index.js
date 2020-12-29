@@ -49,6 +49,7 @@ class Video {
                 this.currentTime > (timeValue * 60) &&
                     videoToSet[i].pause();
             });
+       
         };
     }
 
