@@ -12,88 +12,92 @@ noMatch.style.display = 'none'
 errorPic.style.display = 'none'
 
 class Video {
+    constructor(videoToSet, input, button){
+        this.videoToSet = videoToSet;
+        this.button = button;
+        this.input = input;
+    }
 
-    setFullScreenOnClick(videoToSet) {
-        for (let i = 0; i < videoToSet.length; i++) {
-            videoToSet[i].addEventListener("click", () => {
-                if (videoToSet[i].requestFullscreen) {
-                    videoToSet[i].requestFullscreen();
-                } else if (videoToSet[i].mozRequestFullScreen) { /* Firefox */
-                    videoToSet[i].mozRequestFullScreen();
-                } else if (videoToSet[i].webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-                    videoToSet[i].webkitRequestFullscreen();
-                } else if (videoToSet[i].msRequestFullscreen) { /* IE/Edge */
-                    videoToSet[i].msRequestFullscreen();
+    setFullScreenOnClick() {
+        for (let i = 0; i < this.videoToSet.length; i++) {
+            this.videoToSet[i].addEventListener("click", () => {
+                if (this.videoToSet[i].requestFullscreen) {
+                    this.videoToSet[i].requestFullscreen();
+                } else if (this.videoToSet[i].mozRequestFullScreen) { /* Firefox */
+                    this.videoToSet[i].mozRequestFullScreen();
+                } else if (this.videoToSet[i].webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                    this.videoToSet[i].webkitRequestFullscreen();
+                } else if (this.videoToSet[i].msRequestFullscreen) { /* IE/Edge */
+                    this.videoToSet[i].msRequestFullscreen();
                 };
             });
         };
     }
 
-    play(videoToSet) {
+    play() {
         let playing = false;
-        for (let i = 0; i < videoToSet.length; i++) {
-            videoToSet[i].addEventListener("click", () => {
+        for (let i = 0; i < this.videoToSet.length; i++) {
+            this.videoToSet[i].addEventListener("click", () => {
                 playing = !playing;
                 if (playing) {
-                    videoToSet[i].play();
-                } else videoToSet[i].pause();
+                    this.videoToSet[i].play();
+                } else this.videoToSet[i].pause();
             })
         }
     }
 
-    setPlayingTime(videoToSet) {
+    setPlayingTime() {
         let timeValue;
         timeInput.addEventListener("input", (e) => {
             timeValue = e.target.value;
         })
-        for (let i = 0; i < videoToSet.length; i++) {
-            videoToSet[i].addEventListener("timeupdate", function () {
-                this.currentTime > (timeValue * 60) &&
-                    videoToSet[i].pause();
+        for (let i = 0; i < this.videoToSet.length; i++) {
+            this.videoToSet[i].addEventListener("timeupdate", function () {
+                this.currentTime > (timeValue * 60) && this.videoToSet[i].pause();
             });
 
         };
     }
 
-    hidePlayingTimeHandler(input, button) {
+    
+    hidePlayingTimeHandler() {  
         let showInput = true
-        button.addEventListener("click", () => {
+        this.button.addEventListener("click", () => {
             showInput = !showInput;
             if (showInput) {
-                button.textContent = 'OK'
-                input.style.display = "inline";
+                this.button.textContent = 'OK'
+                this.input.style.display = "inline";
             } else {
-                button.textContent = 'Editar'
-                input.style.display = "none";
+                this.button.textContent = 'Editar'
+                this.input.style.display = "none";
             };
         });
     }
-
-    showControlsOnHOver() {
-        $('.video').hover(function toggleControls() {
-            if (this.hasAttribute("controls")) {
-                this.removeAttribute("controls")
-            } else {
-                this.setAttribute("controls", "controls")
-            }
-        })
-    }
-
+    
+    
+        showControlsOnHOver() {
+            $('.video').hover(function toggleControls() {
+                if (this.hasAttribute("controls")) {
+                    this.removeAttribute("controls")
+                } else {
+                    this.setAttribute("controls", "controls")
+                }
+            })
+        }
 }
 
-let videoClass = new Video;
+let videoClass = new Video(video, timeInput, timebutton);
 
-videoClass.setFullScreenOnClick(video);
-videoClass.play(video);
-videoClass.setPlayingTime(video);
-videoClass.hidePlayingTimeHandler(timeInput, timebutton);
+videoClass.setFullScreenOnClick();
+videoClass.play();
+videoClass.setPlayingTime();
+videoClass.hidePlayingTimeHandler();
 videoClass.showControlsOnHOver();
 
 
 function showVideos(videos, filteredVideos) {
 
     videos.forEach((video) => {
-        video.style.display = "block"
         if (filteredVideos.length > 0) {
             filteredVideos.forEach((item) => {
                 item.style.display = 'block';
@@ -122,12 +126,9 @@ function searchQuery(query, itemsToDisplay) {
         searchInput = e.target.value;
         filtered = newArr.filter((item) => item.textContent.toLowerCase().includes(searchInput) || item.textContent.includes(searchInput));
 
-        if (!searchInput) {
-            itemsToDisplay.forEach((item) => item.style.display = "block");
-        };
+        if (!searchInput) { itemsToDisplay.forEach((item) => item.style.display = "block") };
 
-        showVideos(itemsToDisplay, filtered);
-
+        showVideos(itemsToDisplay, filtered);s
     });
 }
 
