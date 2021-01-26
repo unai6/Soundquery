@@ -5,30 +5,30 @@ let search = document.querySelector(".search-input");
 let videoBlock = document.querySelectorAll(".col");
 let searchInput = '';
 let timeInput = document.getElementById("timeinput");
-let timebutton = document.getElementById("timebutton");
+let timeButton = document.getElementById("timebutton");
 let noMatch = document.querySelector(".nomatch");
 let errorPic = document.querySelector(".error-pic");
 noMatch.style.display = 'none'
 errorPic.style.display = 'none'
 
 class Video {
-    constructor(videoToSet, input, button){
-        this.videoToSet = videoToSet;
-        this.button = button;
-        this.input = input;
+    constructor(video, timeInput, timeButton){
+        this.video = video;
+        this.timeButton = timeButton;
+        this.timeInput = timeInput;
     }
 
     setFullScreenOnClick() {
-        for (let i = 0; i < this.videoToSet.length; i++) {
-            this.videoToSet[i].addEventListener("click", () => {
-                if (this.videoToSet[i].requestFullscreen) {
-                    this.videoToSet[i].requestFullscreen();
-                } else if (this.videoToSet[i].mozRequestFullScreen) { /* Firefox */
-                    this.videoToSet[i].mozRequestFullScreen();
-                } else if (this.videoToSet[i].webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-                    this.videoToSet[i].webkitRequestFullscreen();
-                } else if (this.videoToSet[i].msRequestFullscreen) { /* IE/Edge */
-                    this.videoToSet[i].msRequestFullscreen();
+        for (let i = 0; i < this.video.length; i++) {
+            this.video[i].addEventListener("click", () => {
+                if (this.video[i].requestFullscreen) {
+                    this.video[i].requestFullscreen();
+                } else if (this.video[i].mozRequestFullScreen) { /* Firefox */
+                    this.video[i].mozRequestFullScreen();
+                } else if (this.video[i].webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                    this.video[i].webkitRequestFullscreen();
+                } else if (this.video[i].msRequestFullscreen) { /* IE/Edge */
+                    this.video[i].msRequestFullscreen();
                 };
             });
         };
@@ -36,24 +36,23 @@ class Video {
 
     play() {
         let playing = false;
-        for (let i = 0; i < this.videoToSet.length; i++) {
-            this.videoToSet[i].addEventListener("click", () => {
+        for (let i = 0; i < this.video.length; i++) {
+            this.video[i].addEventListener("click", () => {
                 playing = !playing;
                 if (playing) {
-                    this.videoToSet[i].play();
-                } else this.videoToSet[i].pause();
+                    this.video[i].play();
+                } else this.video[i].pause();
             })
         }
     }
-
     setPlayingTime() {
         let timeValue;
         timeInput.addEventListener("input", (e) => {
             timeValue = e.target.value;
         })
-        for (let i = 0; i < this.videoToSet.length; i++) {
-            this.videoToSet[i].addEventListener("timeupdate", function () {
-                this.currentTime > (timeValue * 60) && this.videoToSet[i].pause();
+        for (let i = 0; i < this.video.length; i++) {
+            this.video[i].addEventListener("timeupdate", function () {
+                this.currentTime > (timeValue * 60) && video[i].pause();
             });
 
         };
@@ -62,14 +61,14 @@ class Video {
     
     hidePlayingTimeHandler() {  
         let showInput = true
-        this.button.addEventListener("click", () => {
+        this.timeButton.addEventListener("click", () => {
             showInput = !showInput;
             if (showInput) {
-                this.button.textContent = 'OK'
-                this.input.style.display = "inline";
+                this.timeButton.textContent = 'OK'
+                this.timeInput.style.display = "inline";
             } else {
-                this.button.textContent = 'Editar'
-                this.input.style.display = "none";
+                this.timeButton.textContent = 'Editar'
+                this.timeInput.style.display = "none";
             };
         });
     }
@@ -86,7 +85,7 @@ class Video {
         }
 }
 
-let videoClass = new Video(video, timeInput, timebutton);
+let videoClass = new Video(video, timeInput, timeButton);
 
 videoClass.setFullScreenOnClick();
 videoClass.play();
