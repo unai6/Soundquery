@@ -16,9 +16,15 @@ class Video {
         this.video = video;
         this.timeButton = timeButton;
         this.timeInput = timeInput;
+
+        this._setFullScreenOnClick();
+        this._play();
+        this._setPlayingTime();
+        this._hidePlayingTimeHandler();
+        this._showControlsOnHOver();
     }
 
-    setFullScreenOnClick() {
+    _setFullScreenOnClick() {
         for (let i = 0; i < this.video.length; i++) {
             this.video[i].addEventListener("click", () => {
                 if (this.video[i].requestFullscreen) {
@@ -34,7 +40,7 @@ class Video {
         };
     }
 
-    play() {
+    _play() {
         let playing = false;
         for (let i = 0; i < this.video.length; i++) {
             this.video[i].addEventListener("click", () => {
@@ -45,7 +51,7 @@ class Video {
             })
         }
     }
-    setPlayingTime() {
+    _setPlayingTime() {
         let timeValue;
         timeInput.addEventListener("input", (e) => {
             timeValue = e.target.value;
@@ -59,7 +65,7 @@ class Video {
     }
 
     
-    hidePlayingTimeHandler() {  
+    _hidePlayingTimeHandler() {  
         let showInput = true
         this.timeButton.addEventListener("click", () => {
             showInput = !showInput;
@@ -74,10 +80,10 @@ class Video {
     }
     
     
-        showControlsOnHOver() {
-            $('.video').hover(function toggleControls() {
-                if (this.hasAttribute("controls")) {
-                    this.removeAttribute("controls")
+    _showControlsOnHOver() {
+         $('.video').hover(function toggleControls() {
+             if (this.hasAttribute("controls")) {
+                this.removeAttribute("controls")
                 } else {
                     this.setAttribute("controls", "controls")
                 }
@@ -87,31 +93,7 @@ class Video {
 
 let videoClass = new Video(video, timeInput, timeButton);
 
-videoClass.setFullScreenOnClick();
-videoClass.play();
-videoClass.setPlayingTime();
-videoClass.hidePlayingTimeHandler();
-videoClass.showControlsOnHOver();
 
-
-function showVideos(videos, filteredVideos) {
-
-    videos.forEach((video) => {
-        if (filteredVideos.length > 0) {
-            filteredVideos.forEach((item) => {
-                item.style.display = 'block';
-                noMatch.style.display = 'none';
-                errorPic.style.display = "none"
-            });
-            video.style.display = 'none';
-
-        } else {
-            noMatch.style.display='block'
-            errorPic.style.display = "block"
-            video.style.display = 'none';
-        }
-    })
-}
 
 
 function searchQuery(query, itemsToDisplay) {
@@ -127,7 +109,7 @@ function searchQuery(query, itemsToDisplay) {
 
         if (!searchInput) { itemsToDisplay.forEach((item) => item.style.display = "block") };
 
-        showVideos(itemsToDisplay, filtered);s
+        showVideos(itemsToDisplay, filtered);
     });
 }
 
